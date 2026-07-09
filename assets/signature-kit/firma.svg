@@ -1,0 +1,17 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="jdSignatureTitle">
+  <!--
+    Firma personal — monograma tipográfico "JD" (Juan Diego)
+    Construcción: las letras J y D reales (no un icono ni un pictograma),
+    con kerning apretado para que se lean como un único lockup en vez de
+    dos letras sueltas. Un solo grosor de trazo, sin relleno, currentColor
+    puro — funciona sola, sin texto al lado, y es reconocible incluso a
+    16-24px. Completamente independiente del lenguaje visual de este o
+    cualquier otro proyecto: no reutiliza formas ni iconografía del sitio.
+    Genérico y reutilizable: el color se controla con --signature-color
+    (o currentColor si esa variable no está definida).
+  -->
+  <title id="jdSignatureTitle">JD — firma personal</title>
+  <path d="M18,9 L18,28 A7,7 0 0 1 11,35" fill="none" stroke="var(--signature-color, currentColor)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M24,9 L24,39" fill="none" stroke="var(--signature-color, currentColor)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M24,9 A14,14 0 0 1 24,39" fill="none" stroke="var(--signature-color, currentColor)" stroke-width="4" stroke-linecap="round"/>
+</svg>

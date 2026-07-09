@@ -1,0 +1,12 @@
+<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="jdSignatureNegTitle">
+  <!--
+    Firma personal — monograma "JD", versión en blanco fijo.
+    Misma construcción que firma.svg (letras J y D reales, kerning
+    apretado), con stroke blanco fijo en vez de currentColor/variable,
+    pensada para usarse como <img> suelta sobre fondos oscuros.
+  -->
+  <title id="jdSignatureNegTitle">JD — firma personal (negativo)</title>
+  <path d="M18,9 L18,28 A7,7 0 0 1 11,35" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <path d="M24,9 L24,39" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+  <path d="M24,9 A14,14 0 0 1 24,39" fill="none" stroke="#ffffff" stroke-width="4" stroke-linecap="round"/>
+</svg>

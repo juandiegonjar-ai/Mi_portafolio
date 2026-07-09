@@ -1,0 +1,2 @@
+Coloca aqui tu foto de perfil con el nombre exacto: perfil.jpg
+Luego, en index.html, descomenta la etiqueta <img> de la seccion "Como trabajo".

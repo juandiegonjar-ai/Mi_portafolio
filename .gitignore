@@ -1,0 +1,8 @@
+# Sistema
+.DS_Store
+
+# Config local de preview (rutas absolutas de esta máquina, no sirve en producción)
+.claude/
+
+# Dependencias (no se usan en runtime)
+node_modules/

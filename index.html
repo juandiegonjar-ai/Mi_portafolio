@@ -394,6 +394,7 @@
         <span class="footer-mid" data-social-footer>
           <a href="mailto:Juandiegonjar@gmail.com" data-mail-text>Juandiegonjar@gmail.com</a>
           <a href="https://www.upwork.com/freelancers/~01351fd2f03bbc7c26?mp_source=share" target="_blank" rel="noopener">Upwork</a>
+          <button type="button" class="footer-legal-link" data-legal-open aria-haspopup="dialog">Aviso legal</button>
         </span>
         <span class="footer-year" data-year>© 2026</span>
       </div>
@@ -417,6 +418,33 @@
       </div>
     </div>
   </footer>
+
+  <!-- ===================== MODAL: AVISO LEGAL ===================== -->
+  <dialog class="legal-modal" id="aviso-legal" aria-labelledby="legal-title">
+    <div class="legal-modal__inner">
+      <button type="button" class="legal-modal__close" data-legal-close aria-label="Cerrar aviso legal">&times;</button>
+      <p class="kicker legal-modal__kicker"><span class="kicker-dot"></span> Información legal</p>
+      <h2 class="legal-modal__title" id="legal-title">Aviso legal</h2>
+
+      <dl class="legal-facts">
+        <div><dt>Titular</dt><dd>Juan Diego Gonzalez</dd></div>
+        <div><dt>Contacto</dt><dd><a href="mailto:juandiegonjar@gmail.com">juandiegonjar@gmail.com</a></dd></div>
+        <div><dt>Actividad</dt><dd>Diseño y desarrollo web freelance.</dd></div>
+      </dl>
+
+      <div class="legal-body">
+        <p>Esta web es propiedad de Juan Diego Gonzalez, dedicado a la actividad de
+          diseño y desarrollo web bajo demanda. Para cualquier consulta puede contactar
+          a través de <a href="mailto:juandiegonjar@gmail.com">juandiegonjar@gmail.com</a>.
+          Los datos fiscales completos se facilitan durante el proceso de contratación
+          del servicio.</p>
+        <p>Todo el contenido de este sitio (diseño, textos, código e imágenes, salvo
+          capturas de proyectos de terceros) es propiedad de Juan Diego Gonzalez y no
+          puede reproducirse total o parcialmente sin autorización previa.</p>
+        <p>Esta web se rige por la legislación española vigente.</p>
+      </div>
+    </div>
+  </dialog>
 
   <!-- ===================== SCRIPTS ===================== -->
   <!-- Librerías locales (sin CDN en producción, sin build) -->

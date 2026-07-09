@@ -361,6 +361,29 @@
   }
 
   /* -----------------------------------------------------------
+     Modal de aviso legal (<dialog> nativo: Escape + foco atrapado)
+     ----------------------------------------------------------- */
+  function initLegal() {
+    var dialog = document.getElementById("aviso-legal");
+    if (!dialog) return;
+    function open(e) {
+      if (e) e.preventDefault();
+      if (typeof dialog.showModal === "function") dialog.showModal();
+      else dialog.setAttribute("open", "");
+    }
+    function close() {
+      if (typeof dialog.close === "function") dialog.close();
+      else dialog.removeAttribute("open");
+    }
+    $$("[data-legal-open]").forEach(function (b) { b.addEventListener("click", open); });
+    $$("[data-legal-close]").forEach(function (b) { b.addEventListener("click", close); });
+    // Cerrar al hacer click en el fondo (fuera de la tarjeta)
+    dialog.addEventListener("click", function (e) {
+      if (e.target === dialog) close();
+    });
+  }
+
+  /* -----------------------------------------------------------
      Scroll suave en anclas (nativo, compensando la nav fija)
      ----------------------------------------------------------- */
   function initAnchors() {
@@ -412,6 +435,7 @@
     safe(initTilt, "initTilt");
     safe(initMailLinks, "initMailLinks");
     safe(initYear, "initYear");
+    safe(initLegal, "initLegal");
     safe(initAnchors, "initAnchors");
     safe(initGsapExtras, "initGsapExtras");
     document.documentElement.classList.add("is-ready");

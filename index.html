@@ -15,11 +15,11 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;700&display=swap" />
 
   <!-- Estilos (sube el ?v= en cada nueva subida al hosting para refrescar caché) -->
-  <link rel="stylesheet" href="styles.css?v=20260709" />
+  <link rel="stylesheet" href="styles.css?v=20260710b" />
 </head>
 <body data-theme="light">
 
-  <a class="skip-link" href="#contacto">Saltar al contacto</a>
+  <a class="skip-link" href="#contacto" data-i18n="skip">Saltar al contacto</a>
 
   <!-- Cursor personalizado (se oculta en pantallas táctiles) -->
   <div class="cursor" aria-hidden="true">
@@ -32,17 +32,23 @@
 
   <!-- ===================== NAV ===================== -->
   <header class="nav" data-nav>
-    <a class="nav-brand" href="#top" aria-label="Inicio">
+    <a class="nav-brand" href="#top" data-i18n-attr="aria-label:nav.brandAria" aria-label="Inicio">
       <span class="nav-mark">JD</span>
       <span class="nav-name">Juan Diego González</span>
     </a>
-    <nav class="nav-links" aria-label="Navegación principal">
-      <a href="#filosofia">Cómo trabajo</a>
-      <a href="#estilos">Estilos</a>
-      <a href="#trabajos">Trabajos</a>
-      <a href="#confianza">Confianza</a>
-      <a class="nav-cta" href="#contacto" data-magnetic>Hablemos</a>
+    <nav class="nav-links" data-i18n-attr="aria-label:nav.aria" aria-label="Navegación principal">
+      <a href="#filosofia" data-i18n="nav.work">Cómo trabajo</a>
+      <a href="#estilos" data-i18n="nav.styles">Estilos</a>
+      <a href="#trabajos" data-i18n="nav.works">Trabajos</a>
+      <a href="#confianza" data-i18n="nav.trust">Confianza</a>
+      <a class="nav-cta" href="#contacto" data-magnetic data-i18n="nav.cta">Hablemos</a>
     </nav>
+    <!-- Selector de idioma propio ES / EN -->
+    <div class="lang-switch" role="group" data-i18n-attr="aria-label:lang.aria" aria-label="Idioma">
+      <button type="button" class="lang-btn is-active" data-lang="es" aria-pressed="true">ES</button>
+      <span class="lang-sep" aria-hidden="true">/</span>
+      <button type="button" class="lang-btn" data-lang="en" aria-pressed="false">EN</button>
+    </div>
   </header>
 
   <main id="top">
@@ -53,37 +59,37 @@
 
       <div class="container hero-inner">
         <p class="kicker reveal" data-reveal>
-          <span class="kicker-dot"></span> Diseño &amp; desarrollo web · Hecho a medida
+          <span class="kicker-dot"></span> <span data-i18n="hero.kicker">Diseño &amp; desarrollo web · Hecho a medida</span>
         </p>
 
         <h1 class="hero-title">
-          <span class="reveal" data-reveal>Construyo webs a medida</span>
-          <span class="reveal" data-reveal>para marcas que no quieren</span>
-          <span class="reveal" data-reveal>parecerse <em>a</em>
+          <span class="reveal" data-reveal data-i18n="hero.title1">Construyo webs a medida</span>
+          <span class="reveal" data-reveal data-i18n="hero.title2">para marcas que no quieren</span>
+          <span class="reveal" data-reveal data-i18n-html="hero.title3">parecerse <em>a</em>
             <!-- Palabra que se desarma y recompone en distintos estilos tipográficos -->
             <span class="morph" data-morph aria-label="ninguna otra">ninguna otra</span>.
           </span>
         </h1>
 
-        <p class="hero-sub reveal" data-reveal>
+        <p class="hero-sub reveal" data-reveal data-i18n="hero.sub">
           Soy Juan Diego. Diseño y programo sitios web pensados desde cero para tu
           marca: nada de plantillas recicladas, nada de webs que ya has visto mil veces.
         </p>
 
         <div class="hero-actions reveal" data-reveal>
-          <a class="btn btn-primary" href="#contacto" data-magnetic>Hablemos de tu proyecto</a>
-          <a class="btn btn-ghost" href="#estilos">Ver mis estilos en vivo</a>
+          <a class="btn btn-primary" href="#contacto" data-magnetic data-i18n="hero.cta1">Hablemos de tu proyecto</a>
+          <a class="btn btn-ghost" href="#estilos" data-i18n="hero.cta2">Ver mis estilos en vivo</a>
         </div>
 
         <div class="hero-foot reveal" data-reveal>
-          <span>Disponible para nuevos proyectos</span>
+          <span data-i18n="hero.foot1">Disponible para nuevos proyectos</span>
           <span class="hero-foot-sep"></span>
-          <span>Trabajo directo, sin intermediarios</span>
+          <span data-i18n="hero.foot2">Trabajo directo, sin intermediarios</span>
         </div>
       </div>
 
-      <a class="hero-scroll" href="#filosofia" aria-label="Bajar a la siguiente sección">
-        <span>Scroll</span>
+      <a class="hero-scroll" href="#filosofia" data-i18n-attr="aria-label:hero.scrollAria" aria-label="Bajar a la siguiente sección">
+        <span data-i18n="hero.scroll">Scroll</span>
         <span class="hero-scroll-line" aria-hidden="true"></span>
       </a>
     </section>
@@ -93,7 +99,7 @@
       <div class="container split">
         <div class="split-side">
           <p class="section-index" data-reveal>(01)</p>
-          <p class="section-label" data-reveal>Cómo trabajo</p>
+          <p class="section-label" data-reveal data-i18n="phil.label">Cómo trabajo</p>
 
           <!-- Foto de perfil: refuerza que hay una persona real detrás -->
           <figure class="portrait" data-reveal>
@@ -102,27 +108,27 @@
                    (mismos nombres). El navegador usa el WebP (más ligero) y cae al JPG si no puede. -->
               <picture>
                 <source srcset="imagenes/perfil.webp" type="image/webp" />
-                <img src="imagenes/perfil.jpg" alt="Foto de Juan Diego González, diseñador web" loading="lazy" decoding="async" />
+                <img src="imagenes/perfil.jpg" data-i18n-attr="alt:phil.portraitAlt" alt="Foto de Juan Diego González, diseñador web" loading="lazy" decoding="async" />
               </picture>
             </div>
             <figcaption class="portrait-cap">
               <span class="portrait-cap-dot" aria-hidden="true"></span>
-              <span class="portrait-cap-text">Diseño tu web como si la marca <em>fuera mía</em> — y te la devuelvo mejor.</span>
+              <span class="portrait-cap-text" data-i18n-html="phil.caption">Diseño tu web como si la marca <em>fuera mía</em> — y te la devuelvo mejor.</span>
             </figcaption>
           </figure>
         </div>
         <div class="split-main">
-          <h2 class="display reveal" data-reveal data-split>
+          <h2 class="display reveal" data-reveal data-split data-i18n="phil.h2">
             Cada proyecto empieza en una página en blanco.
           </h2>
           <div class="philosophy-cols">
-            <p class="lead reveal" data-reveal>
+            <p class="lead reveal" data-reveal data-i18n="phil.p1">
               No reutilizo plantillas ni parto de un tema comprado. Antes de escribir
               una sola línea de código, entiendo tu marca, a quién te diriges y qué
               necesitas conseguir. A partir de ahí diseño una web que solo tiene
               sentido para ti.
             </p>
-            <p class="reveal" data-reveal>
+            <p class="reveal" data-reveal data-i18n="phil.p2">
               Me tomo cada encargo como si fuera el único. Cuido la tipografía, el
               ritmo, los detalles de interacción y el rendimiento, porque son esas
               cosas —las que casi nadie nombra— las que hacen que una web se sienta
@@ -131,10 +137,10 @@
           </div>
 
           <ul class="process" data-reveal>
-            <li class="process-step"><span class="process-n">01</span><span class="process-t">Escucho tu marca y tus objetivos</span></li>
-            <li class="process-step"><span class="process-n">02</span><span class="process-t">Diseño una dirección única para ti</span></li>
-            <li class="process-step"><span class="process-n">03</span><span class="process-t">Desarrollo a medida, cuidando cada detalle</span></li>
-            <li class="process-step"><span class="process-n">04</span><span class="process-t">Te acompaño después de la entrega</span></li>
+            <li class="process-step"><span class="process-n">01</span><span class="process-t" data-i18n="phil.step1">Escucho tu marca y tus objetivos</span></li>
+            <li class="process-step"><span class="process-n">02</span><span class="process-t" data-i18n="phil.step2">Diseño una dirección única para ti</span></li>
+            <li class="process-step"><span class="process-n">03</span><span class="process-t" data-i18n="phil.step3">Desarrollo a medida, cuidando cada detalle</span></li>
+            <li class="process-step"><span class="process-n">04</span><span class="process-t" data-i18n="phil.step4">Te acompaño después de la entrega</span></li>
           </ul>
         </div>
       </div>
@@ -142,18 +148,18 @@
 
     <!-- =================================================================
          ★ SELECTOR DE ESTILOS EN VIVO  (elemento diferenciador)
-         Cambia los textos y nombres de estilos desde lib/manifest.js
+         Textos ES en lib/manifest.js · textos EN en lib/i18n.js (en.styles)
          ================================================================= -->
     <section class="section styles" id="estilos">
       <div class="container">
         <div class="styles-head">
           <div>
             <p class="section-index" data-reveal>(02)</p>
-            <h2 class="display reveal" data-reveal data-split>
+            <h2 class="display reveal" data-reveal data-split data-i18n="styles.h2">
               Un mismo oficio, muchos lenguajes.
             </h2>
           </div>
-          <p class="styles-intro reveal" data-reveal>
+          <p class="styles-intro reveal" data-reveal data-i18n="styles.intro">
             No hago siempre la misma web. Pulsa cada estilo y mira cómo cambia por
             completo la misma página —tipografía, color, ritmo y personalidad— sin
             recargar nada. Esto es, en pequeño, lo que puedo hacer con tu marca.
@@ -161,8 +167,8 @@
         </div>
 
         <div class="styles-stage">
-          <!-- Pestañas de estilo (se completan desde JS, con fallback en HTML) -->
-          <div class="styles-tabs" role="tablist" aria-label="Selector de estilos" data-style-tabs>
+          <!-- Pestañas de estilo (label/desc los sincroniza el JS por idioma) -->
+          <div class="styles-tabs" role="tablist" data-i18n-attr="aria-label:styles.tabsAria" aria-label="Selector de estilos" data-style-tabs>
             <button class="style-tab is-active" role="tab" aria-selected="true" data-style-btn="minimal" data-magnetic>
               <span class="style-tab-label">Minimalista</span>
               <span class="style-tab-desc">Espacio, silencio y foco.</span>
@@ -190,7 +196,7 @@
             <div class="browser-bar">
               <span class="browser-dots" aria-hidden="true"><i></i><i></i><i></i></span>
               <span class="browser-url" data-browser-url>estudio-mave.com</span>
-              <span class="browser-live" aria-hidden="true">EN&nbsp;VIVO</span>
+              <span class="browser-live" aria-hidden="true" data-i18n="styles.live">EN&nbsp;VIVO</span>
             </div>
             <div class="browser-view" data-browser-view>
               <!-- Contenido de la landing de demostración (lo actualiza el JS) -->
@@ -213,7 +219,7 @@
 
         <p class="styles-note reveal" data-reveal>
           <span class="styles-note-mark">✦</span>
-          Y esto es solo una muestra. Tu web no sería ninguna de estas: sería la tuya.
+          <span data-i18n="styles.note">Y esto es solo una muestra. Tu web no sería ninguna de estas: sería la tuya.</span>
         </p>
       </div>
     </section>
@@ -223,82 +229,80 @@
       <div class="container">
         <div class="works-head">
           <p class="section-index" data-reveal>(03)</p>
-          <h2 class="display reveal" data-reveal data-split>Trabajos seleccionados.</h2>
+          <h2 class="display reveal" data-reveal data-split data-i18n="works.h2">Trabajos seleccionados.</h2>
         </div>
 
-        <!-- Proyectos reales. Cada tarjeta enlaza a la web en vivo (pestaña nueva).
-             Las capturas viven en capturas/ — para regenerarlas, vuelve a hacer
-             screenshot 1200x800 de cada web y sobrescribe el .jpg correspondiente. -->
+        <!-- Proyectos reales. Cada tarjeta enlaza a la web en vivo (pestaña nueva). -->
         <div class="works-grid" data-projects>
           <a class="work-card work-card--featured" href="https://plinth-ivory.vercel.app/" target="_blank" rel="noopener noreferrer" data-tilt>
             <div class="work-media">
-              <img src="capturas/plinth.jpg" alt="Portada de la web de Plinth: estudio de arquitectura, fondo oscuro con fotografía arquitectónica" loading="lazy" decoding="async" width="1200" height="800" />
-              <span class="work-overlay" aria-hidden="true">Ver proyecto en vivo →</span>
+              <img src="capturas/plinth.jpg" data-i18n-attr="alt:works.alt1" alt="Portada de la web de Plinth: estudio de arquitectura, fondo oscuro con fotografía arquitectónica" loading="lazy" decoding="async" width="1200" height="800" />
+              <span class="work-overlay" aria-hidden="true" data-i18n="works.overlay">Ver proyecto en vivo →</span>
             </div>
             <div class="work-body">
               <span class="work-n">01</span>
               <h3 class="work-title">Plinth</h3>
-              <p class="work-meta">Estudio de arquitectura · Editorial oscuro minimalista</p>
+              <p class="work-meta" data-i18n="works.meta1">Estudio de arquitectura · Editorial oscuro minimalista</p>
             </div>
           </a>
 
           <a class="work-card" href="https://nordika-web.vercel.app/" target="_blank" rel="noopener noreferrer" data-tilt>
             <div class="work-media">
-              <img src="capturas/nordika.jpg" alt="Portada de la web de Nórdika: reformas integrales, hero luminoso con interior nórdico" loading="lazy" decoding="async" width="1200" height="800" />
-              <span class="work-overlay" aria-hidden="true">Ver proyecto en vivo →</span>
+              <img src="capturas/nordika.jpg" data-i18n-attr="alt:works.alt2" alt="Portada de la web de Nórdika: reformas integrales, hero luminoso con interior nórdico" loading="lazy" decoding="async" width="1200" height="800" />
+              <span class="work-overlay" aria-hidden="true" data-i18n="works.overlay">Ver proyecto en vivo →</span>
             </div>
             <div class="work-body">
               <span class="work-n">02</span>
               <h3 class="work-title">Nórdika</h3>
-              <p class="work-meta">Reformas integrales · Nórdico cálido y luminoso</p>
+              <p class="work-meta" data-i18n="works.meta2">Reformas integrales · Nórdico cálido y luminoso</p>
             </div>
           </a>
 
           <a class="work-card" href="https://neonika.vercel.app/" target="_blank" rel="noopener noreferrer" data-tilt>
             <div class="work-media">
-              <img src="capturas/neonika.jpg" alt="Portada de la web de Neonika: estudio de iluminación LED, fondo negro con neón azul y violeta" loading="lazy" decoding="async" width="1200" height="800" />
-              <span class="work-overlay" aria-hidden="true">Ver proyecto en vivo →</span>
+              <img src="capturas/neonika.jpg" data-i18n-attr="alt:works.alt3" alt="Portada de la web de Neonika: estudio de iluminación LED, fondo negro con neón azul y violeta" loading="lazy" decoding="async" width="1200" height="800" />
+              <span class="work-overlay" aria-hidden="true" data-i18n="works.overlay">Ver proyecto en vivo →</span>
             </div>
             <div class="work-body">
               <span class="work-n">03</span>
               <h3 class="work-title">Neonika</h3>
-              <p class="work-meta">Iluminación LED · Audaz / neón</p>
+              <p class="work-meta" data-i18n="works.meta3">Iluminación LED · Audaz / neón</p>
             </div>
           </a>
 
           <a class="work-card" href="https://barberia-la-familia.vercel.app/" target="_blank" rel="noopener noreferrer" data-tilt>
             <div class="work-media">
-              <img src="capturas/barberia-la-familia.jpg" alt="Portada de la web de Barbería La Familia: interior de barbería clásica con luz cálida y titular serif" loading="lazy" decoding="async" width="1200" height="800" />
-              <span class="work-overlay" aria-hidden="true">Ver proyecto en vivo →</span>
+              <img src="capturas/barberia-la-familia.jpg" data-i18n-attr="alt:works.alt4" alt="Portada de la web de Barbería La Familia: interior de barbería clásica con luz cálida y titular serif" loading="lazy" decoding="async" width="1200" height="800" />
+              <span class="work-overlay" aria-hidden="true" data-i18n="works.overlay">Ver proyecto en vivo →</span>
             </div>
             <div class="work-body">
               <span class="work-n">04</span>
               <h3 class="work-title">Barbería La Familia</h3>
-              <p class="work-meta">Barbería · Clásico con carácter</p>
+              <p class="work-meta" data-i18n="works.meta4">Barbería · Clásico con carácter</p>
             </div>
           </a>
 
           <a class="work-card" href="https://la-brasa-drab.vercel.app/" target="_blank" rel="noopener noreferrer" data-tilt>
             <div class="work-media">
-              <img src="capturas/la-brasa.jpg" alt="Portada de la web de La Brasa: hamburguesería a la brasa, hero oscuro con fuego real" loading="lazy" decoding="async" width="1200" height="800" />
-              <span class="work-overlay" aria-hidden="true">Ver proyecto en vivo →</span>
+              <img src="capturas/la-brasa.jpg" data-i18n-attr="alt:works.alt5" alt="Portada de la web de La Brasa: hamburguesería a la brasa, hero oscuro con fuego real" loading="lazy" decoding="async" width="1200" height="800" />
+              <span class="work-overlay" aria-hidden="true" data-i18n="works.overlay">Ver proyecto en vivo →</span>
             </div>
             <div class="work-body">
               <span class="work-n">05</span>
               <h3 class="work-title">La Brasa</h3>
-              <p class="work-meta">Hamburguesería · Audaz, fuego y contraste</p>
+              <p class="work-meta" data-i18n="works.meta5">Hamburguesería · Audaz, fuego y contraste</p>
             </div>
           </a>
 
           <a class="work-card work-card--featured" href="https://frame-studio-liart.vercel.app/" target="_blank" rel="noopener noreferrer" data-tilt>
             <div class="work-media">
-              <img src="capturas/frame-studio.jpg" alt="Portada de la web de FRAME Studio: estudio de fotografía, hero oscuro con cámara réflex y titular serif" loading="lazy" decoding="async" width="1200" height="800" />
-              <span class="work-overlay" aria-hidden="true">Ver proyecto en vivo →</span>
+              <img src="capturas/frame-studio.jpg" data-i18n-attr="alt:works.alt6" alt="Portada de la web de FRAME Studio: estudio de fotografía, hero oscuro con cámara réflex y titular serif" loading="lazy" decoding="async" width="1200" height="800" />
+              <span class="work-overlay" aria-hidden="true" data-i18n="works.overlay">Ver proyecto en vivo →</span>
             </div>
             <div class="work-body">
               <span class="work-n">06</span>
               <h3 class="work-title">FRAME Studio</h3>
-              <p class="work-meta">Estudio de fotografía · Editorial oscuro y elegante</p>
+              <p class="work-meta" data-i18n="works.meta6">Estudio de fotografía · Editorial oscuro y elegante</p>
             </div>
           </a>
         </div>
@@ -310,32 +314,32 @@
       <div class="container split">
         <div class="split-side">
           <p class="section-index" data-reveal>(04)</p>
-          <p class="section-label" data-reveal>Por qué confiar en mí</p>
+          <p class="section-label" data-reveal data-i18n="trust.label">Por qué confiar en mí</p>
         </div>
         <div class="split-main">
-          <h2 class="display reveal" data-reveal data-split>
+          <h2 class="display reveal" data-reveal data-split data-i18n="trust.h2">
             Trabajas conmigo, no con una fábrica de webs.
           </h2>
           <div class="trust-grid" data-reveal>
             <div class="trust-item">
               <span class="trust-n">01</span>
-              <h3>Hablas siempre conmigo</h3>
-              <p>De principio a fin tratas directamente con la persona que diseña y programa tu web. Sin intermediarios ni teléfonos rotos.</p>
+              <h3 data-i18n="trust.t1">Hablas siempre conmigo</h3>
+              <p data-i18n="trust.p1">De principio a fin tratas directamente con la persona que diseña y programa tu web. Sin intermediarios ni teléfonos rotos.</p>
             </div>
             <div class="trust-item">
               <span class="trust-n">02</span>
-              <h3>Cada proyecto, desde cero</h3>
-              <p>Nada de plantillas reutilizadas. Tu web se piensa para tu marca y tus objetivos, no para encajar en un molde.</p>
+              <h3 data-i18n="trust.t2">Cada proyecto, desde cero</h3>
+              <p data-i18n="trust.p2">Nada de plantillas reutilizadas. Tu web se piensa para tu marca y tus objetivos, no para encajar en un molde.</p>
             </div>
             <div class="trust-item">
               <span class="trust-n">03</span>
-              <h3>Entregas cuidadas al detalle</h3>
-              <p>Tipografía, rendimiento, accesibilidad y esos pequeños detalles que hacen que una web se sienta seria y bien hecha.</p>
+              <h3 data-i18n="trust.t3">Entregas cuidadas al detalle</h3>
+              <p data-i18n="trust.p3">Tipografía, rendimiento, accesibilidad y esos pequeños detalles que hacen que una web se sienta seria y bien hecha.</p>
             </div>
             <div class="trust-item">
               <span class="trust-n">04</span>
-              <h3>Acompañamiento después</h3>
-              <p>La entrega no es una despedida. Sigo disponible para ajustes, dudas y para que tu web crezca contigo.</p>
+              <h3 data-i18n="trust.t4">Acompañamiento después</h3>
+              <p data-i18n="trust.p4">La entrega no es una despedida. Sigo disponible para ajustes, dudas y para que tu web crezca contigo.</p>
             </div>
           </div>
         </div>
@@ -346,29 +350,59 @@
     <section class="section pricing" id="precios">
       <div class="container pricing-inner">
         <p class="section-index" data-reveal>(05)</p>
-        <h2 class="display reveal" data-reveal data-split>
+        <h2 class="display reveal" data-reveal data-split data-i18n="pricing.h2">
           Cada presupuesto se piensa igual que cada web: a tu medida.
         </h2>
-        <p class="lead reveal" data-reveal>
+        <p class="lead reveal" data-reveal data-i18n="pricing.p1">
           No tengo una tabla de precios fija, y es a propósito. Una web sencilla y una
           plataforma completa no cuestan lo mismo, así que no tendría sentido cobrarlas
           igual. Preparo cada presupuesto según el alcance, la complejidad y lo que tu
           proyecto necesita de verdad.
         </p>
-        <p class="reveal" data-reveal>
+        <p class="reveal" data-reveal data-i18n="pricing.p2">
           El primer paso es sencillo y sin compromiso: me cuentas tu idea, la miramos
           juntos y te doy una estimación clara y transparente. Sin letra pequeña.
         </p>
-        <a class="btn btn-primary" href="#contacto" data-magnetic>Pídeme un presupuesto</a>
+        <a class="btn btn-primary" href="#contacto" data-magnetic data-i18n="pricing.cta">Pídeme un presupuesto</a>
+      </div>
+    </section>
+
+    <!-- ===================== FIRMA PERSONAL (sello de autoría) ===================== -->
+    <section class="section signature-feature" id="firma">
+      <div class="container signature-feature__inner">
+        <p class="section-index" data-reveal>(06)</p>
+        <h2 class="display reveal" data-reveal data-i18n="sig.h2">Cada web que entrego va firmada.</h2>
+        <p class="lead reveal signature-feature__lead" data-reveal data-i18n="sig.lead">
+          Como quien firma un cuadro al terminarlo, dejo mi sello al pie de cada sitio
+          que hago. Un gesto pequeño, siempre el mismo, que dice —sin levantar la voz—
+          que esto lo hice yo.
+        </p>
+
+        <!-- Firma en grande: mismo monograma que el footer (assets/signature-kit/firma.svg),
+             inline y a mayor escala. Enlace mailto (mismo asunto que el CTA de contacto).
+             El trazo se dibuja al entrar en pantalla. -->
+        <div class="signature-feature__mark" data-reveal>
+          <a class="signature-feature__link" href="mailto:juandiegonjar@gmail.com?subject=Quiero%20hacer%20una%20web%20personalizada" data-i18n-attr="aria-label:sig.markAria" aria-label="Firma personal de Juan Diego González">
+            <svg class="signature-hero" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+              <path d="M18,9 L18,28 A7,7 0 0 1 11,35" fill="none" stroke="var(--signature-color, currentColor)" stroke-width="4" stroke-linecap="round"/>
+              <path d="M24,9 L24,39" fill="none" stroke="var(--signature-color, currentColor)" stroke-width="4" stroke-linecap="round"/>
+              <path d="M24,9 A14,14 0 0 1 24,39" fill="none" stroke="var(--signature-color, currentColor)" stroke-width="4" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+
+        <p class="signature-feature__note reveal" data-reveal data-i18n-html="sig.note">
+          La encontrarás, mucho más discreta, <a href="#firma-pie">al pie de esta misma página <span aria-hidden="true">↓</span></a>.
+        </p>
       </div>
     </section>
 
     <!-- ===================== CONTACTO ===================== -->
     <section class="section contact" id="contacto">
       <div class="container contact-inner">
-        <p class="section-index" data-reveal>(06)</p>
-        <h2 class="contact-title" data-reveal data-split>Hablemos de tu proyecto.</h2>
-        <p class="contact-sub reveal" data-reveal>
+        <p class="section-index" data-reveal>(07)</p>
+        <h2 class="contact-title" data-reveal data-split data-i18n="contact.h2">Hablemos de tu proyecto.</h2>
+        <p class="contact-sub reveal" data-reveal data-i18n="contact.sub">
           Cuéntame qué tienes en mente. Te respondo yo, en persona, y damos el primer
           paso para construir algo que sea solo tuyo.
         </p>
@@ -376,18 +410,18 @@
         <!-- CTA principal: abre el cliente de correo con asunto prellenado.
              El href real (mailto:) lo genera el JS a partir de lib/manifest.js -->
         <a class="btn btn-cta" data-mail-cta href="#" data-magnetic>
-          <span>Escríbeme un correo</span>
+          <span data-i18n="contact.cta">Escríbeme un correo</span>
           <span class="btn-cta-arrow" aria-hidden="true">→</span>
         </a>
 
         <!-- Datos de contacto visibles (para copiar a mano si se prefiere) -->
         <div class="contact-details reveal" data-reveal>
           <p class="contact-line">
-            <span class="contact-key">Correo</span>
+            <span class="contact-key" data-i18n="contact.key1">Correo</span>
             <a class="contact-val" data-mail-text href="#">Juandiegonjar@gmail.com</a>
           </p>
           <p class="contact-line">
-            <span class="contact-key">Enlaces</span>
+            <span class="contact-key" data-i18n="contact.key2">Enlaces</span>
             <span class="contact-val contact-social" data-social>
               <a href="https://www.upwork.com/freelancers/~01351fd2f03bbc7c26?mp_source=share" target="_blank" rel="noopener">Upwork</a>
             </span>
@@ -406,26 +440,24 @@
         <span class="footer-mid" data-social-footer>
           <a href="mailto:Juandiegonjar@gmail.com" data-mail-text>Juandiegonjar@gmail.com</a>
           <a href="https://www.upwork.com/freelancers/~01351fd2f03bbc7c26?mp_source=share" target="_blank" rel="noopener">Upwork</a>
-          <button type="button" class="footer-legal-link" data-legal-open aria-haspopup="dialog">Aviso legal</button>
+          <button type="button" class="footer-legal-link" data-legal-open aria-haspopup="dialog" data-i18n="footer.legal">Aviso legal</button>
         </span>
         <span class="footer-year" data-year>© 2026</span>
       </div>
 
       <!-- ============================================================
            FIRMA / SELLO PERSONAL DE AUTORÍA (kit en assets/signature-kit/)
-           NO modificar el SVG. El único ajuste por proyecto es
-           --signature-color en styles.css. Es independiente de la marca
-           del sitio de arriba. 👉 Cambia el href si tienes una URL de
-           portfolio propia (ahora apunta a tu perfil de Upwork).
+           NO modificar el SVG. Enlace mailto (mismo asunto que el CTA
+           de contacto). Es independiente de la marca del sitio de arriba.
            ============================================================ -->
-      <div class="site-signature">
-        <a href="https://www.upwork.com/freelancers/~01351fd2f03bbc7c26?mp_source=share" target="_blank" rel="noopener" aria-label="Sitio diseñado por Juan Diego Gonzalez J.">
+      <div class="site-signature" id="firma-pie">
+        <a href="mailto:juandiegonjar@gmail.com?subject=Quiero%20hacer%20una%20web%20personalizada" data-i18n-attr="aria-label:footer.sigAria" aria-label="Sitio diseñado por Juan Diego Gonzalez J.">
           <svg class="site-signature__mark" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M18,9 L18,28 A7,7 0 0 1 11,35" fill="none" stroke="var(--signature-color, currentColor)" stroke-width="4" stroke-linecap="round"/>
             <path d="M24,9 L24,39" fill="none" stroke="var(--signature-color, currentColor)" stroke-width="4" stroke-linecap="round"/>
             <path d="M24,9 A14,14 0 0 1 24,39" fill="none" stroke="var(--signature-color, currentColor)" stroke-width="4" stroke-linecap="round"/>
           </svg>
-          <span class="site-signature__text">sitio diseñado por Juan Diego Gonzalez J.</span>
+          <span class="site-signature__text" data-i18n="footer.sig">sitio diseñado por Juan Diego Gonzalez J.</span>
         </a>
       </div>
     </div>
@@ -434,26 +466,26 @@
   <!-- ===================== MODAL: AVISO LEGAL ===================== -->
   <dialog class="legal-modal" id="aviso-legal" aria-labelledby="legal-title">
     <div class="legal-modal__inner">
-      <button type="button" class="legal-modal__close" data-legal-close aria-label="Cerrar aviso legal">&times;</button>
-      <p class="kicker legal-modal__kicker"><span class="kicker-dot"></span> Información legal</p>
-      <h2 class="legal-modal__title" id="legal-title">Aviso legal</h2>
+      <button type="button" class="legal-modal__close" data-legal-close data-i18n-attr="aria-label:legal.closeAria" aria-label="Cerrar aviso legal">&times;</button>
+      <p class="kicker legal-modal__kicker"><span class="kicker-dot"></span> <span data-i18n="legal.kicker">Información legal</span></p>
+      <h2 class="legal-modal__title" id="legal-title" data-i18n="legal.title">Aviso legal</h2>
 
       <dl class="legal-facts">
-        <div><dt>Titular</dt><dd>Juan Diego Gonzalez</dd></div>
-        <div><dt>Contacto</dt><dd><a href="mailto:juandiegonjar@gmail.com">juandiegonjar@gmail.com</a></dd></div>
-        <div><dt>Actividad</dt><dd>Diseño y desarrollo web freelance.</dd></div>
+        <div><dt data-i18n="legal.dt1">Titular</dt><dd>Juan Diego Gonzalez</dd></div>
+        <div><dt data-i18n="legal.dt2">Contacto</dt><dd><a href="mailto:juandiegonjar@gmail.com">juandiegonjar@gmail.com</a></dd></div>
+        <div><dt data-i18n="legal.dt3">Actividad</dt><dd data-i18n="legal.dd3">Diseño y desarrollo web freelance.</dd></div>
       </dl>
 
       <div class="legal-body">
-        <p>Esta web es propiedad de Juan Diego Gonzalez, dedicado a la actividad de
+        <p data-i18n-html="legal.body1">Esta web es propiedad de Juan Diego Gonzalez, dedicado a la actividad de
           diseño y desarrollo web bajo demanda. Para cualquier consulta puede contactar
           a través de <a href="mailto:juandiegonjar@gmail.com">juandiegonjar@gmail.com</a>.
           Los datos fiscales completos se facilitan durante el proceso de contratación
           del servicio.</p>
-        <p>Todo el contenido de este sitio (diseño, textos, código e imágenes, salvo
+        <p data-i18n="legal.body2">Todo el contenido de este sitio (diseño, textos, código e imágenes, salvo
           capturas de proyectos de terceros) es propiedad de Juan Diego Gonzalez y no
           puede reproducirse total o parcialmente sin autorización previa.</p>
-        <p>Esta web se rige por la legislación española vigente.</p>
+        <p data-i18n="legal.body3">Esta web se rige por la legislación española vigente.</p>
       </div>
     </div>
   </dialog>
@@ -462,9 +494,10 @@
   <!-- Librerías locales (sin CDN en producción, sin build) -->
   <script defer src="lib/gsap.min.js"></script>
   <script defer src="lib/ScrollTrigger.min.js"></script>
-  <!-- Datos de la marca -->
-  <script defer src="lib/manifest.js?v=20260708"></script>
+  <!-- Datos de la marca + diccionario de idiomas -->
+  <script defer src="lib/manifest.js?v=20260710b"></script>
+  <script defer src="lib/i18n.js?v=20260710b"></script>
   <!-- Lógica del sitio -->
-  <script defer src="main.js?v=20260709"></script>
+  <script defer src="main.js?v=20260710b"></script>
 </body>
 </html>

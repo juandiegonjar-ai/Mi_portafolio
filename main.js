@@ -11,6 +11,13 @@
   var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var fineHover = matchMedia("(hover: hover) and (pointer: fine)").matches;
 
+  // Idiomas
+  var I18N = window.__I18N__ || { es: {}, en: {} };
+  var LANG = "es";
+  var LANG_KEY = "jdg-lang";
+  var morphTimer = null;     // temporizador de la palabra que muta (reiniciable)
+  var styleRelang = null;    // función que re-renderiza el selector de estilos por idioma
+
   function $(sel, scope) { return (scope || document).querySelector(sel); }
   function $$(sel, scope) { return Array.prototype.slice.call((scope || document).querySelectorAll(sel)); }
   function safe(fn, name) { try { fn(); } catch (e) { console.warn("[" + name + "]", e); } }
@@ -161,6 +168,9 @@
   function initMorph() {
     var el = $("[data-morph]");
     if (!el) return;
+    // Reiniciable: para el ciclo anterior y limpia estilos (por cambio de idioma)
+    if (morphTimer) { clearInterval(morphTimer); morphTimer = null; }
+    el.style.cssText = "";
     var CHARS = "abcdefghijklmnopqrstuvwxyz—·*";
     var LOOKS = [
       { ff: 'Fraunces, serif',            fs: "italic", fw: "400", tt: "none",      ls: "-0.02em" },
@@ -200,7 +210,7 @@
       step();
     }
 
-    setInterval(function () {
+    morphTimer = setInterval(function () {
       i = (i + 1) % LOOKS.length;
       scrambleTo(LOOKS[i]);
     }, 2600);
@@ -209,6 +219,12 @@
   /* -----------------------------------------------------------
      ★ Selector de estilos en vivo
      ----------------------------------------------------------- */
+  // Estilos del idioma activo: ES en manifest.js, EN en i18n.js (en.styles)
+  function currentStyles() {
+    if (LANG === "en" && I18N.en && I18N.en.styles) return I18N.en.styles;
+    return data.styles || [];
+  }
+
   function initStyleSelector() {
     var browser = $("[data-browser]");
     var view = $("[data-browser-view]");
@@ -217,7 +233,11 @@
     if (!browser || !view || !tabs.length) return;
 
     var stylesData = {};
-    (data.styles || []).forEach(function (s) { stylesData[s.id] = s; });
+    function buildData() {
+      stylesData = {};
+      currentStyles().forEach(function (s) { stylesData[s.id] = s; });
+    }
+    buildData();
 
     var busy = false;
 
@@ -283,15 +303,27 @@
       });
     });
 
-    // Sincroniza textos de las pestañas con manifest.js (por si se editan)
-    tabs.forEach(function (btn) {
-      var s = stylesData[btn.getAttribute("data-style-btn")];
-      if (!s) return;
-      var label = $(".style-tab-label", btn);
-      var desc = $(".style-tab-desc", btn);
-      if (label) label.textContent = s.label;
-      if (desc) desc.textContent = s.desc;
-    });
+    // Sincroniza los textos de las pestañas con los datos del idioma activo
+    function syncTabs() {
+      tabs.forEach(function (btn) {
+        var s = stylesData[btn.getAttribute("data-style-btn")];
+        if (!s) return;
+        var label = $(".style-tab-label", btn);
+        var desc = $(".style-tab-desc", btn);
+        if (label) label.textContent = s.label;
+        if (desc) desc.textContent = s.desc;
+      });
+    }
+    syncTabs();
+
+    // Re-render por idioma (lo llama applyLang): rehace datos, pestañas y el
+    // contenido del estilo activo, con sustitución directa (sin swap animado).
+    styleRelang = function () {
+      buildData();
+      syncTabs();
+      var s = stylesData[browser.dataset.style];
+      if (s) setContent(s);
+    };
   }
 
   /* -----------------------------------------------------------
@@ -422,6 +454,78 @@
   }
 
   /* -----------------------------------------------------------
+     Idioma: aplica un diccionario (ES/EN) sin recargar
+     ----------------------------------------------------------- */
+  function applyLang(lang) {
+    var d = I18N[lang];
+    if (!d) return;
+    LANG = lang;
+
+    // 1. Texto plano
+    $$("[data-i18n]").forEach(function (el) {
+      var k = el.getAttribute("data-i18n");
+      if (d[k] != null) el.textContent = d[k];
+    });
+    // 2. HTML enriquecido (con <em>, <a>, la palabra que muta, etc.)
+    $$("[data-i18n-html]").forEach(function (el) {
+      var k = el.getAttribute("data-i18n-html");
+      if (d[k] != null) el.innerHTML = d[k];
+    });
+    // 3. Atributos ("alt:clave, aria-label:clave")
+    $$("[data-i18n-attr]").forEach(function (el) {
+      el.getAttribute("data-i18n-attr").split(",").forEach(function (pair) {
+        var idx = pair.indexOf(":");
+        if (idx < 0) return;
+        var attr = pair.slice(0, idx).trim();
+        var key = pair.slice(idx + 1).trim();
+        if (d[key] != null) el.setAttribute(attr, d[key]);
+      });
+    });
+
+    // 4. Re-troquelar titulares [data-split] (el texto plano borró sus spans)
+    $$("[data-split][data-i18n]").forEach(function (el) { delete el.dataset.splitDone; });
+    safe(initSplitLines, "initSplitLines(lang)");
+
+    // 5. Reiniciar la palabra que muta del hero (su <span> se recreó)
+    safe(initMorph, "initMorph(lang)");
+
+    // 6. Re-render del selector de estilos en vivo en el idioma activo
+    if (styleRelang) safe(styleRelang, "styleRelang");
+
+    // 7. Documento: lang + <title> + meta description (accesibilidad y SEO)
+    document.documentElement.setAttribute("lang", lang);
+    if (d["meta.title"]) document.title = d["meta.title"];
+    var md = document.querySelector('meta[name="description"]');
+    if (md && d["meta.desc"]) md.setAttribute("content", d["meta.desc"]);
+
+    // 8. Estado visual de los botones ES / EN
+    $$("[data-lang]").forEach(function (b) {
+      var active = b.getAttribute("data-lang") === lang;
+      b.classList.toggle("is-active", active);
+      b.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+
+    // 9. Recuerda la preferencia
+    try { localStorage.setItem(LANG_KEY, lang); } catch (e) {}
+  }
+
+  function initLangSwitch() {
+    var btns = $$("[data-lang]");
+    if (!btns.length) return;
+    btns.forEach(function (b) {
+      b.addEventListener("click", function () {
+        var lang = b.getAttribute("data-lang");
+        if (lang === LANG) return;
+        applyLang(lang);
+      });
+    });
+    // Preferencia guardada (el HTML ya está en ES por defecto)
+    var saved = null;
+    try { saved = localStorage.getItem(LANG_KEY); } catch (e) {}
+    if (saved && saved !== "es" && I18N[saved]) applyLang(saved);
+  }
+
+  /* -----------------------------------------------------------
      Boot
      ----------------------------------------------------------- */
   function boot() {
@@ -438,6 +542,7 @@
     safe(initLegal, "initLegal");
     safe(initAnchors, "initAnchors");
     safe(initGsapExtras, "initGsapExtras");
+    safe(initLangSwitch, "initLangSwitch");
     document.documentElement.classList.add("is-ready");
   }
 
